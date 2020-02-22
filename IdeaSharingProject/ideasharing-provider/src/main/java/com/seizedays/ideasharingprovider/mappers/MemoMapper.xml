@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seizedays.ideasharingprovider.mappers.MemoMapper">
+
+    <resultMap id="BaseResultMap" type="com.seizedays.beans.Memo">
+        <id column="mid" jdbcType="BIGINT" property="mid" />
+        <result column="date" jdbcType="VARCHAR" property="date" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="uid" jdbcType="BIGINT" property="uid"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        mid, date, content
+    </sql>
+
+    <!--查询-->
+    <select id="selectMemo" resultType="com.seizedays.beans.Memo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM memo
+        WHERE
+        date = #{date,jdbcType=VARCHAR} AND uid = #{uid}
+    </select>
+
+    <!--删除-->
+    <delete id="deleteMemoById">
+        DELETE  FROM memo
+        WHERE mid = #{id} AND uid = #{uid}
+    </delete>
+    
+    <!--新增-->
+    <insert id="insertMemo" parameterType="com.seizedays.beans.Memo">
+        INSERT INTO memo(date, content,uid)
+        VALUES (#{date,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},#{uid, jdbcType=BIGINT})
+    </insert>
+    
+    <!--更新-->
+    <update id="updateMemo" parameterType="com.seizedays.beans.Memo">
+        UPDATE memo
+        SET content = #{content, jdbcType=INTEGER}
+        WHERE mid = #{mid, jdbcType=INTEGER} AND uid = #{uid}
+    </update>
+
+</mapper>

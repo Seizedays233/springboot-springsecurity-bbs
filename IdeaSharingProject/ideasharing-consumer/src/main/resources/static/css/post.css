@@ -1,0 +1,299 @@
+html{
+    margin: 0;
+    padding: 0;
+    height: auto;
+    min-height: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    height: auto;
+    min-height: 100%;
+    color: white;
+    /* background-image:linear-gradient(180deg,#070707 10%,#a8a9ac 100%); */
+    background:rgb(58,58,58);
+    background-size:cover
+}
+
+.panel-heading{
+    font-size: 18px ;
+    font-weight: bolder;
+    background-color: rgb(58,58,58) !important;
+    color: white !important;
+}
+
+
+.panel-body{
+    min-height: 95px;
+    height: auto;
+    background-color: gray;
+    color: white;
+}
+.fileContainer{
+    margin-top: 2px;
+    padding: 3px 5px 3px 10px;
+    height: auto;
+    background-color: gray;
+}
+.head-text{
+    color: white !important;
+}
+
+.head-text :hover{
+    color: white;
+}
+
+.text-primary{
+    color: rgb(195, 176, 145) ;
+}
+
+.text-info{
+    color: black !important;
+}
+
+.panel-body{
+    height: auto;
+    overflow: auto;
+}
+
+.change-page{
+    background-color: rgba(220,38,38,0) !important;
+    color: rgb(195, 176, 145) !important;
+    border: 0 !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+    text-align: center;
+    line-height:23px;
+    margin-right: 5%;
+}
+
+.btn-primary:hover{
+    background-color: red !important;
+}
+
+.btn-reply:hover{
+    background-color: rgb(4, 95, 95) !important;
+}
+
+.page-top {
+    width:100%;
+    height:46px;
+    background:rgb(43, 42, 42) !important;
+    z-index:1;
+}
+
+.page-top-bottom {
+    height:10px;
+    width:100%;
+    margin-bottom: 20px;
+}
+
+
+#personalUL{
+    float:right;
+    list-style-type: none;
+    text-align:center;
+}
+
+#personalUL li {
+    color:white !important;
+    display: inline-block;
+    margin: 25px 30px 0 0;
+    vertical-align: bottom;
+}
+
+a{
+    color: white;
+}
+
+a:hover{
+    color: white;
+}
+nav{
+    text-align: center;
+    font-size: medium;
+}
+
+nav .title{
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    display: inline-block;
+    text-align: center;
+    font-size: 23px;
+    margin-top: 8px;
+}
+
+.main-cont{
+    width: 100%;
+}
+
+.title-profile{
+    border-radius: 50%;
+    margin-left: 2%;
+    margin-right: 1%;
+    float: left;
+    width: 150px;
+    height: 150px;
+}
+
+.reply-div-moderator{
+    width: 100%;
+    margin-top:10px;
+}
+.moderator-reply{
+    float: right;
+    margin-right: 9%;
+    width: 75%;
+}
+
+.moderator-profile{
+    border-radius: 50%;
+    float: left;
+    width: 150px;
+    height: 150px;
+    margin-left: 5%;
+}
+
+.reply-div-viewer{
+    width: 100%;
+    margin-top:10px;
+
+}
+
+.viewer-reply{
+    float: left;
+    margin-left: 9%;
+    width: 75%;
+}
+.viewer-profile{
+    border-radius: 50%;
+    float: right;
+    width: 150px;
+    height: 150px;
+    margin-right: 5%;
+}
+
+.reply{
+    border-radius: 20px;
+}
+
+.reply-body{
+    border-radius: 20px 20px 0 0;
+}
+
+.reply-footer{
+    border-radius: 0 0 20px 20px;
+}
+
+.reply-div{
+    margin-left: 6%;
+    width: 88%;
+}
+
+#reply-body{
+    width: 100%;
+    height: 300px;
+
+}
+
+footer{
+    width: 100%;
+    background: black;
+    margin-top: 50px;
+    padding: 20px 20px;
+    font-size: 15px;
+    color: gray;
+    text-align: center;
+}
+
+/* --------------按钮样式------------ */
+.ctlbtn {
+    height: 30px;
+    width: 60px;
+    display: inline-block;
+    border-radius: 3px;
+    margin-top: 5px;
+    vertical-align: center;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+    text-align: center;
+    line-height:23px;
+    margin-right: 5%;
+}
+.btn1 {
+    display: inline-block;
+    border-radius: 3px;
+    vertical-align: center;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+    text-align: center;
+}
+
+.btn--gray {
+    box-shadow: 0 0 0 1px gray;
+    color:white;
+    letter-spacing: 2px;
+    padding: 0.3em 0.5em;
+}
+.btn--gray:hover {
+    color: rgb(195, 176, 145);;
+    box-shadow: 0 27px 55px rgba(255, 255, 255, 0.3), 0 17px 17px rgba(0, 0, 0, 0.15), 0 0 0 1px transparent;
+}
+
+.btn--red {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    color: black;
+    letter-spacing: 2px;
+    padding: 0.3em 0.5em;
+}
+
+.btn--red:hover {
+    color: rgb(238, 38, 38);
+    box-shadow: 0 27px 55px rgba(0, 0, 0, 0.3), 0 17px 17px rgba(0, 0, 0, 0.15), 0 0 0 1px transparent;
+}
+
+.btn--blue {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    color:black;
+    letter-spacing: 2px;
+    padding: 0.3em 0.5em;
+}
+.btn--blue:hover {
+    color: rgb(79, 154, 252);;
+    box-shadow: 0 27px 55px rgba(0, 0, 0, 0.3), 0 17px 17px rgba(0, 0, 0, 0.15), 0 0 0 1px transparent;
+}
+
+#btn-div{
+    margin-left: 40%;
+    width: 20%;
+}
+
+.badge-danger{
+    color:#fff;
+    background-color:#e74a3b
+}
+.badge-counter{
+    position:absolute !important;
+    transform:scale(.7) !important;
+    transform-origin:top right !important;
+    right:-.4rem !important;
+    margin-top:-.5rem !important
+}

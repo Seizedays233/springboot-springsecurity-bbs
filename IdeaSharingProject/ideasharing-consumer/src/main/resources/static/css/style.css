@@ -1,0 +1,153 @@
+body{
+    background: rgb(58, 58, 58);
+    color: white;
+    font-family: "Microsoft YaHei",微软雅黑,Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/* HEADER */
+header{
+    background-color: black;
+    background-image: url("../images/bulb.jpg");
+    background-size: 40%;
+    background-position:-100px, center;
+    background-repeat:no-repeat;
+    height: 300px;
+    padding: 20px;
+    font-size: medium;
+    text-align: center;
+}
+
+header a{
+    color:white;
+    text-decoration: none;
+    margin-top: 40px;
+}
+header a:hover{
+    text-decoration: underline;
+}
+
+header .mobile{
+    display: none;
+}
+
+header #mainNav{
+    width: 40%;
+    position: relative;
+    left: 6%;
+    display: inline-block;
+
+}
+
+header .logo a{
+    background-image: url("../images/logo_white.png");
+    background-size: 220px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 120px;
+    position: relative;
+    width:240px;
+    text-indent: -999999999px;
+    top : -50px;
+}
+
+#personalUL{
+    float:right;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: inline-block;
+    text-align:center;
+}
+
+nav li{
+    color:white;
+    display: inline-block;
+    margin: 0 20px 0 0
+}
+
+.navbar{
+    width: 5%;
+    float: right;
+    position: absolute;
+    right: 14%;
+    font-size: medium;
+}
+
+.dropdown-menu{
+    width: 150px !important;
+    font-size: 12px !important;
+}
+.dropdown-item{
+    margin: 0 0 0 0;
+    font-size: 12px !important;
+}
+
+
+/* RESPONSIVE RULES */
+@media screen and (max-width: 740px) {
+    header {
+        height: 200px;
+    }
+
+    header .mobile{
+        display: inline-block;
+    }
+    header .desktop{
+        display: none;
+    }
+
+}
+/* SCETION */
+.features {
+    background: rgb(68, 67, 67);
+    color:gray;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#portfolio .portfolio-item .portfolio-link .caption .caption-content{
+    top:35%;
+}
+#portfolio .portfolio-item .portfolio-link .caption .caption-content p{
+    font-size:20px;
+    line-height:24px; margin:24px 16px 0;
+}
+#portfolio .portfolio-item .portfolio-link{
+    height: 260px; overflow:hidden;
+}
+#portfolio .portfolio-item .portfolio-link{
+    background: rgb(228, 184, 90);
+}
+#portfolio .portfolio-item .portfolio-link .img-responsive{
+    width: 260px;
+    height: 250px;
+    display: block;
+    border-radius: 100%;
+    margin: 5px auto;
+}
+/* RESPONSIVE RULES
+@media screen and (max-width: 740px) {
+    .features{
+        display: block;
+
+    }
+} */
+
+/* FOOTER */
+footer{
+    background: black;
+    padding: 20px 20px;
+    font-size: 15px;
+    color: gray;
+    text-align: center;
+}
+
+
+
+

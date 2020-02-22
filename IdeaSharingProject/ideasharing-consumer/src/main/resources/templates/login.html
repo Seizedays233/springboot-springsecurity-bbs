@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>感享-登录</title>
+
+
+  <link href="/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/css/register.css" rel="stylesheet">
+
+
+
+</head>
+
+<body class="bg-gradient-primary">
+
+<div class="container" id="login-div">
+
+  <div class="row justify-content-center">
+
+    <div class="col-xl-10 col-lg-12 col-md-9">
+
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">欢迎回来！</h1>
+                </div>
+                <form class="user" id="loginForm" action="/login.do" method="post">
+                  <div class="form-group">
+                    <input type="email" class="form-control form-control-user" id="inputUsername" name="username" aria-describedby="emailHelp" placeholder="请输入您的用户名" onblur="usernameCheck()" >
+                    <span id="nameTip" class="tips"></span>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control form-control-user" id="inputPassword" name="password" placeholder="在这里输入您的密码">
+                    <span id="pwdTip" class="tips" th:text="${loginMessage}"></span>
+                  </div>
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox small">
+                      <input type="checkbox" class="custom-control-input" id="customCheck" name="remember">
+                      <label class="custom-control-label" for="customCheck" >记住我</label>
+                    </div>
+                  </div>
+                  <a href="#" onclick="loginCheck()" class="btn btn-primary btn-user btn-block" id="login-btn">
+                    登录
+                  </a>
+                  <hr>
+                  <a href="index.html" class="btn btn-phone btn-user btn-block">
+                    微信登录
+                  </a>
+                  <a href="index.html" class="btn btn-wechat btn-user btn-block">
+                    QQ登录
+                  </a>
+                </form>
+                <hr>
+                <div class="text-center">
+                  <a class="small" href="forgot-password.html">忘记密码?</a>
+                </div>
+                <div class="text-center">
+                  <a class="small" href="/register">新用户注册</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+<script src="/js/jquery.easing.min.js"></script>
+
+<script src="/js/sb-admin-2.min.js"></script>
+
+<script src="/js/login.js"></script>
+
+
+</html>

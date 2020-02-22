@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>我的主题</title>
+
+
+    <link href="/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="/css/user.css" rel="stylesheet">
+    <link href="/css/personal-post.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top" >
+<div id="wrapper">
+    <!--侧边导航栏-->
+    <ul th:replace="sidebar::sidebar"></ul>
+
+    <!-- 主界面 -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- 主要内容 -->
+        <div id="content">
+
+            <!-- 顶部导航栏 -->
+            <nav th:replace="user-nav::nav"></nav>
+
+            <!-- 主界面内容 -->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <!-- 主题显示列表 -->
+                    <div class="col-xl-8 col-lg-7 topic">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary" style="color: black !important;">我发表的主题</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body personal" >
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Uid</th>
+                                            <th>用户名</th>
+                                            <th>昵称</th>
+                                            <th>角色</th>
+                                            <th>权限</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="user:${userList}">
+                                            <td class="uid" th:text="${user.uid}">26</td>
+                                            <td class="username" th:text="${user.username}">111111</td>
+                                            <td class="nickName" th:text="${user.nickName}">seizedays</td>
+                                            <td class="role au">
+                                                <span class="role-span user-span" th:text="${user.role}" >role_vip1</span>
+                                                <input class="role-input user-input" type="text" th:value="${user.role}" style="display: none" >
+                                            </td>
+                                            <td class="auth au">
+                                                <span class="auth-span user-span" th:text="${user.authority}">admin</span>
+                                                <input class="auth-input user-input" type="text" th:value="${user.authority}" style="display: none" >
+                                            </td>
+                                            <td class="user-ustate">
+                                                <select class="ustate" th:value="${user.ustate}">
+                                                    <option value="1">活动</option>
+                                                    <option value="0">禁言</option>
+                                                    <option value="-1">封禁</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="saveBtn btn--blue btn">保存</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <br><br>
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white" id="footer">
+            作者: Seizedays <br>电话: 18554006135<br>邮箱:529656871@qq.com
+        </footer>
+    </div>
+
+
+
+</div>
+
+
+</body>
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script sec:authorize="isAuthenticated()" src="/js/auth.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+<script src="/js/auth-manage.js"></script>
+
+</html>

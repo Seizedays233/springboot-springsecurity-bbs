@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seizedays.ideasharingprovider.mappers.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.seizedays.beans.IdeaUser">
+        <id column="uid" jdbcType="BIGINT" property="uid" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="ustate" jdbcType="INTEGER" property="ustate"/>
+        <result column="ucreatetime" jdbcType="TIMESTAMP" property="ucreatetime"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickName"/>
+        <result column="signature" jdbcType="VARCHAR" property="signature"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="profilepath" jdbcType="VARCHAR" property="profilePath"/>
+        <result column="authority" jdbcType="VARCHAR" property="authority"/>
+        <result column="role" jdbcType="VARCHAR" property="role"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        uid, username, password, sex, email,phone,level, ustate, ucreatetime,nickname, signature, profilepath, authority, role
+    </sql>
+
+    <!--根据名字查询-->
+    <select id="selectUser" parameterType="java.lang.String" resultType="com.seizedays.beans.IdeaUser">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ideauser
+        WHERE username = #{username,jdbcType=VARCHAR}
+    </select>
+
+    <!--根据uid查询-->
+    <select id="selectUserByUId" parameterType="Long" resultType="com.seizedays.beans.IdeaUser">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ideauser
+        WHERE uid = #{uid,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectAllUser" resultType="com.seizedays.beans.IdeaUser">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ideauser
+    </select>
+
+    <!--昵称查重-->
+    <select id="duplicateCheck" parameterType="String" resultType="Integer">
+        SELECT COUNT(*)
+        FROM ideauser
+        WHERE nickname = #{nickName, jdbcType=VARCHAR}
+    </select>
+
+    <!--删除-->
+    <delete id="deleteUser" parameterType="java.lang.String">
+        DELETE FROM ideauser
+        WHERE username = #{username}
+    </delete>
+    
+    <!--新增-->
+    <insert id="addUser" parameterType="com.seizedays.beans.IdeaUser">
+        INSERT INTO ideauser(username, password, email, phone, level, ustate, ucreatetime,nickname,signature,sex,profilepath, authority, role)
+        VALUES(#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{level, jdbcType=INTEGER}, #{ustate, jdbcType=INTEGER}, #{ucreatetime,jdbcType=TIMESTAMP},#{nickName,jdbcType=VARCHAR},#{signature,jdbcType=VARCHAR},
+               #{sex,jdbcType=TINYINT},#{profilePath,jdbcType=VARCHAR},#{authority,jdbcType=VARCHAR},#{role,jdbcType=VARCHAR})
+    </insert>
+
+    <!--更新用户数据-->
+    <update id="updateUserData" parameterType="com.seizedays.beans.IdeaUser">
+        UPDATE ideauser
+        SET email = #{email, jdbcType=VARCHAR}, phone=#{phone,jdbcType=VARCHAR},nickname=#{nickName,jdbcType=VARCHAR}, signature=#{signature,jdbcType=VARCHAR}, sex=#{sex,jdbcType=TINYINT},profilepath=#{profilePath,jdbcType=VARCHAR}
+        WHERE username = #{username, jdbcType=VARCHAR}
+    </update>
+
+    <!--更新用户权限-->
+    <update id="updateUserAuth" parameterType="com.seizedays.beans.IdeaUser">
+        UPDATE ideauser
+        SET role = #{role, jdbcType=VARCHAR}, authority=#{authority,jdbcType=VARCHAR}, ustate=#{ustate,jdbcType=INTEGER}
+        WHERE uid = #{uid, jdbcType=BIGINT}
+    </update>
+
+    <!--更新密码-->
+    <update id="updateUserPassword" parameterType="com.seizedays.beans.IdeaUser">
+        UPDATE ideauser
+        SET password = #{password, jdbcType=VARCHAR}
+        WHERE username = #{username, jdbcType=VARCHAR}
+    </update>
+
+</mapper>

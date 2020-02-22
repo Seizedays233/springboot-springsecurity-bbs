@@ -1,0 +1,192 @@
+
+<nav th:fragment="nav" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow page-top"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <a class="title" href="/index">感享</a>
+
+    <div class="input-group search-box">
+        <form action="/bbs" id="search-form">
+            <select class="serarch-opt" name="opt">
+                <option value = 0 >搜标题</option>
+                <option value = 1 >搜作者</option>
+            </select>
+
+            <input type="text" name="content" class="form-control search-text" id="search-input" placeholder="请输入搜索内容" / >
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-search">查找</button>
+                <a href="/editor" class="btn btn-info btn-send">发帖</a>
+            </span>
+        </form>
+    </div>
+
+    <!--已登录状态显示-->
+    <ul sec:authorize="isAuthenticated()" class="navbar-nav ml-auto" >
+
+        <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
+            <!-- 消息下拉菜单 -->
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>
+
+        <!-- 备忘提醒 -->
+        <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- 备忘数量 -->
+                <span class="badge badge-danger badge-counter">3+</span>
+            </a>
+            <!-- 备忘下拉菜单 -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                    备忘录
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-primary">
+                            <i class="fas fa-file-alt text-white"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500">日期</div>
+                        <span class="font-weight-bold">备忘内容1</span>
+                    </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-success">
+                            <i class="fas fa-donate text-white"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500">日期2</div>
+                        备忘内容2
+                    </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                        <div class="icon-circle bg-warning">
+                            <i class="fas fa-exclamation-triangle text-white"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="small text-gray-500">December 2, 2019</div>
+                        备忘内容
+                    </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">显示所有备忘</a>
+            </div>
+        </li>
+
+        <!-- 消息-->
+        <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-envelope fa-fw"></i>
+                <!-- 消息数量 -->
+                <span class="badge badge-danger badge-counter">7</span>
+            </a>
+            <!-- 消息下拉菜单 -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header">
+                    消息中心
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+<!--                        <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">-->
+                        <div class="status-indicator bg-success"></div>
+                    </div>
+                    <div class="font-weight-bold">
+                        <div class="text-truncate">消息提示1</div>
+                        <div class="small text-gray-500">用户 · 时间</div>
+                    </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+<!--                        <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">-->
+                        <div class="status-indicator"></div>
+                    </div>
+                    <div>
+                        <div class="text-truncate">消息提示2</div>
+                        <div class="small text-gray-500">用户 · 时间</div>
+                    </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+<!--                        <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">-->
+                        <div class="status-indicator bg-warning"></div>
+                    </div>
+                    <div>
+                        <div class="text-truncate">消息提示3</div>
+                        <div class="small text-gray-500">用户 · 时间</div>
+                    </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+<!--                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">-->
+                        <div class="status-indicator bg-success"></div>
+                    </div>
+                    <div>
+                        <div class="text-truncate">消息提示4</div>
+                        <div class="small text-gray-500">用户 · 时间</div>
+                    </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">查看更多消息内容</a>
+            </div>
+        </li>
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- 用户信息 -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small nickName">用户名</span>
+                <img class="img-profile rounded-circle" src=""  style="width: 30px; height: 30px; border-radius: 50%;">
+            </a>
+            <!-- 用户信息下拉菜单 -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="/user">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    个人中心
+                </a>
+                <a class="dropdown-item" href="/safety">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    设置
+                </a>
+                <a class="dropdown-item" href="/editor">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    发帖
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    注销
+                </a>
+            </div>
+        </li>
+
+    </ul>
+
+    <!--未登陆状态-->
+    <ul sec:authorize="!isAuthenticated()" id="personalUL" >
+        <!-- 如果未登录 显示登录和注册  -->
+        <div >
+            <li><a href="/login">需登录后才能发帖</a></li>
+            <li><a th:href="@{/login}">登录</a></li>
+            <li><a th:href="@{/register}">注册</a></li>
+        </div>
+    </ul>
+
+
+</nav>

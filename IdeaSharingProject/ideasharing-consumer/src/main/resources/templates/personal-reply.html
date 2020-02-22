@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>我的回复</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="/css/user.css" rel="stylesheet">
+    <link href="/css/personal-post.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top" >
+<div id="wrapper">
+    <!-- 侧边导航栏 -->
+    <ul th:replace="sidebar::sidebar"></ul>
+
+    <!-- 主界面 -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- 主要内容 -->
+        <div id="content">
+
+            <!-- 顶部导航栏 -->
+            <nav th:replace="user-nav::nav"></nav>
+
+            <!-- 主界面内容 -->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <!-- 主题显示列表 -->
+                    <div class="col-xl-8 col-lg-7 topic">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary" style="color: black !important;">我发表的主题</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body personal" th:if="${replyList == 0}">
+                                    <span>-您还没有发表过回复-</span>
+                            </div>
+
+                            <div class="card-body personal" th:if="${replyList != 0}" >
+                                <div class="inner-row">
+
+                                    <div class="ptitle">
+                                        <span>回复</span>
+                                    </div>
+
+                                    <div class="send-time">
+                                        <span>回复时间</span>
+                                    </div>
+
+                                </div>
+                                <div class="inner-row title-row" th:each="reply:${replyList}">
+                                    <div class="ptitle">
+                                        <span>在主题</span>
+                                        <a class="underline-hover-btn" th:href="@{/post/{pid}.content(pid=${reply.post.pid},rid=${reply.rid})}" th:text="${reply.post.ptitle}">今天天气不错</a>
+                                        <span>中回复：</span><br>
+                                        <div class="replyContent"><span th:text="${reply.replyMessage}">"确实不错 呵呵"</span></div>
+                                    </div>
+
+                                    <div class="send-time">
+                                        <span th:text="${#dates.format(reply.replyTime,'yyyy-MM-dd HH:mm:ss')}">2020/02/14 15:32:18</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div><br><br>
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white" id="footer">
+            作者: Seizedays <br>QQ: 2945734401<br>邮箱:2945734401@qq.com
+        </footer>
+
+    </div>
+
+</div>
+</body>
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script sec:authorize="isAuthenticated()" src="/js/auth.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+<script src="/js/personal-reply.js"></script>
+
+</html>

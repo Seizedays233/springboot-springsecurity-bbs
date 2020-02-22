@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> 感享-分享你的灵感 </title>
+
+     <link href="/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+     <link href="/css/freelancer.min.css" rel="stylesheet" />
+     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+     <link href="/css/all.min.css" rel="stylesheet" type="text/css">
+
+     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+     <link  href="/css/style.css" rel="stylesheet">
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- 如果未登录 显示登录和注册  -->
+            <ul sec:authorize="!isAuthenticated()" id="personalUL" >
+                <div >
+                    <li><a th:href="@{/login}">登录</a></li>
+                    <li><a th:href="@{/register}">注册</a></li>
+                </div>
+            </ul>
+
+            <!--如果已登录 显示用户名和注销-->
+            <nav sec:authorize="isAuthenticated()"
+                 class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell fa-fw"></i>
+                            <!-- 提醒计数 -->
+                            <span class="badge badge-danger badge-counter">3+</span>
+                        </a>
+                        <!-- 提醒下拉菜单 -->
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" style="width: 280px !important;">
+                            <h6 class="dropdown-header">
+                                备忘录
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-primary">
+                                        <i class="fas fa-file-alt text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">日期</div>
+                                    <span class="font-weight-bold">备忘内容1</span>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-success">
+                                        <i class="fas fa-donate text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">日期</div>
+                                    备忘内容2
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-warning">
+                                        <i class="fas fa-exclamation-triangle text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">日期</div>
+                                    备忘内容3
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">显示所有备忘</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-envelope fa-fw"></i>
+                            <!-- 信息计数 -->
+                            <span class="badge badge-danger badge-counter">7</span>
+                        </a>
+                        <!-- 消息下拉弹框 -->
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown" style="width: 280px !important;">
+                            <h6 class="dropdown-header">
+                                信息中心
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+<!--                                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">-->
+                                    <div class="status-indicator bg-success"></div>
+                                </div>
+                                <div class="font-weight-bold">
+                                    <div class="text-truncate">信息1</div>
+                                    <div class="small text-gray-500">用户 · 时间</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+<!--                                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">-->
+                                    <div class="status-indicator"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">信息2</div>
+                                    <div class="small text-gray-500">用户 · 时间</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+<!--                                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">-->
+                                    <div class="status-indicator bg-warning"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">信息3</div>
+                                    <div class="small text-gray-500">用户 · 时间</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+<!--                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">-->
+                                    <div class="status-indicator bg-success"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">信息4</div>
+                                    <div class="small text-gray-500">用户 · 时间</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">查看更多信息</a>
+                        </div>
+                    </li>
+
+
+                    <!-- 个人信息 -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small nickName">用户名</span>
+                            <img class="img-profile rounded-circle" src="/images/head.jpg"  style="width: 60px; height: 60px; border-radius: 50%;">
+                        </a>
+                        <!-- 个人信息下拉弹框 -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="/user">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                个人中心
+                            </a>
+                            <a class="dropdown-item" href="/safety">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                设置
+                            </a>
+                            <a class="dropdown-item" href="/editor">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                发帖
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                注销
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <ul id="mainNav">
+                <li><a href="/index">主页</a></li>
+                <li ><a href="/lookAround">随便看看</a></li>
+                <li class="mobile"><a href="/Calendar">私人日记</a></li>
+                <li class="mobile"><a href="#footer">关于作者</a></li>
+                <li class="logo"><a href="/index">Seizedays 主页</a></li>
+                <li class="desktop"><a href="/Calendar">私人日记</a></li>
+                <li class="desktop"><a href="#footer">关于作者</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="portfolio" class="features">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-4 portfolio-item">
+                    <a href="/bbs" class="portfolio-link" data-toggle="modal" >
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="glyphicon glyphicon-hand-down" style="color: white; font-size: 70px;"></i>
+                                <p>我是一名科学家</p>
+                            </div>
+                        </div>
+                        <img src="/images/scienctist.png" class="img-responsive" alt="" />
+                    </a>
+                </div>
+
+                <div class="col-sm-4 portfolio-item">
+                    <a href="/bbs" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="glyphicon glyphicon-hand-down" style="color: white; font-size: 70px;"></i>
+                                <p>我是一名程序员</p>
+                            </div>
+                        </div>
+                        <img src="/images/programmer.png" class="img-responsive" alt="" />
+                    </a>
+                </div>
+
+                <div class="col-sm-4 portfolio-item">
+                    <a href="/bbs" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="glyphicon glyphicon-hand-down" style="color: white; font-size: 70px;"></i>
+                                <p>我是一个艺术家</p>
+                            </div>
+                        </div>
+                        <img src="/images/artist.png" class="img-responsive" alt="" />
+                    </a>
+                </div>
+
+                <div class="col-sm-4 portfolio-item">
+                    <a href="/bbs" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="glyphicon glyphicon-hand-down" style="color: white; font-size: 70px;"></i>
+                                <p>我是一位企业管理者</p>
+                            </div>
+                        </div>
+                        <img src="/images/manager.png" class="img-responsive" alt="" />
+                    </a>
+                </div>
+
+                <div class="col-sm-4 portfolio-item">
+                    <a href="/bbs" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="glyphicon glyphicon-hand-down" style="color: white; font-size: 70px;"></i>
+                                <p>我是一名工程师</p>
+                            </div>
+                        </div>
+                        <img src="/images/engineer.png" class="img-responsive" alt="" />
+                    </a>
+                </div>
+
+                <div class="col-sm-4 portfolio-item">
+                    <a href="/bbs" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="glyphicon glyphicon-hand-down" style="color: white; font-size: 70px;"></i>
+                                <p>我是一个游戏达人</p>
+                            </div>
+                        </div>
+                        <img src="/images/game.png" class="img-responsive" alt="" />
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <footer id="footer">作者: Seizedays <br>QQ: 2945734401<br>邮箱:2945734401@qq.com</footer>
+</body>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/sb-admin-2.min.js"></script>
+    <script sec:authorize="isAuthenticated()" src="/js/auth.js"></script>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seizedays.ideasharingprovider.mappers.ReplyMapper">
+
+    <select id="getReplyCountByPid" resultType="Long" parameterType="Long">
+        SELECT COUNT(1)
+        FROM reply
+        WHERE pid =#{value}
+    </select>
+
+
+    <resultMap type="com.seizedays.beans.Reply" id="ReplyAndUser">
+        <id column="rid" jdbcType="BIGINT" property="rid" />
+        <result column="replymessage" jdbcType="LONGVARCHAR" property="replyMessage" />
+        <result column="replytime" jdbcType="TIMESTAMP" property="replyTime" />
+        <result column="uid" jdbcType="BIGINT" property="ideaUser.uid" />
+        <result column="pid" jdbcType="BIGINT" property="post.pid"/>
+        <result column="username" jdbcType="VARCHAR" property="ideaUser.username" />
+        <result column="nickname" jdbcType="VARCHAR" property="ideaUser.nickName"/>
+        <result column="profilepath" jdbcType="VARCHAR" property="ideaUser.profilePath"/>
+        <result column="ptitle" jdbcType="VARCHAR" property="post.ptitle"/>
+    </resultMap>
+
+    <select id="selectReplyByPid" resultMap="ReplyAndUser" parameterType="Long">
+        SELECT u.uid,u.username,replymessage,replytime,rid,u.nickname,u.profilepath
+        FROM reply r LEFT JOIN ideauser u ON r.uid = u.uid
+        WHERE pid = #{pid}
+    </select>
+
+    <select id="selectReplyByRid" resultType="com.seizedays.beans.Reply" parameterType="Long">
+        SELECT u.uid,u.username,replymessage,replytime,rid,u.nickname,u.profilepath
+        FROM reply r LEFT JOIN ideauser u ON r.uid = u.uid
+        WHERE rid = #{rid}
+    </select>
+
+    <select id="selectReplyByUid" resultMap="ReplyAndUser" parameterType="Long">
+        SELECT  r.rid, r.pid, replymessage,replytime,p.ptitle
+        FROM reply r LEFT JOIN post p ON r.pid = p.pid
+        WHERE r.uid = #{uid}
+        ORDER BY r.replytime DESC
+    </select>
+
+
+    <insert id="sendReply" parameterType="com.seizedays.beans.Reply">
+        INSERT INTO reply(pid, uid, replymessage, replytime)
+        VALUES (#{post.pid},#{ideaUser.uid},#{replyMessage},#{replyTime})
+    </insert>
+
+
+    <delete id="deleteReply" parameterType="Long">
+        DELETE FROM reply
+        WHERE pid = #{value}
+    </delete>
+
+    <parameterMap id="PidStartPageShowPage" type="Map">
+        <parameter property="pid" />
+        <parameter property="startPage" /><!--开始页码 -->
+        <parameter property="showPage" /><!-- 显示条数 -->
+    </parameterMap>
+
+    <select id="selectReplyByPidAndPage" resultMap="ReplyAndUser" parameterMap="PidStartPageShowPage">
+        SELECT u.uid,u.username,replymessage,replytime,rid,u.nickname,u.profilepath
+        FROM reply r LEFT JOIN ideauser u ON r.uid = u.uid
+        WHERE pid = #{pid}
+        LIMIT #{startPage},#{showPage}
+    </select>
+    
+    <delete id="deleteReplyByRid" parameterType="Long">
+        DELETE FROM reply
+        WHERE rid = #{value}
+    </delete>
+
+</mapper>

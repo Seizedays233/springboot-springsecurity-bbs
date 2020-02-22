@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<meta  charset="utf-8" />
+	<title>Web日历</title>
+
+	<link href="/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="/css/calendar.css">
+	<link rel="stylesheet" href="/js/kindeditor/themes/default/default.css">
+</head>
+<body>
+	<nav th:replace="bbs-nav::nav"></nav>
+	<div class="page-top-bottom"></div>
+	<div class="OuterDiv">
+		<div class="LeftColoum">
+			<div class="Calendar">
+				<div class="Cal-nav">
+					<div id="idCalendarPre">上一月</div>
+					<div id="idCalendarNext">下一月</div>
+					<div id="toyear"><span id="idCalendarYear">2019</span>年 <span id="idCalendarMonth">10</span>月</div>
+				</div>
+				<table>
+					<thead>
+					<tr class="tou">
+						<th>星期日</th>
+						<th>星期一</th>
+						<th>星期二</th>
+						<th>星期三</th>
+						<th>星期四</th>
+						<th>星期五</th>
+						<th>星期六</th>
+					</tr>
+					</thead>
+					<tbody id="idCalendar" onclick="selectFun()" >
+					</tbody>
+				</table>
+			</div>
+			<div id="memorandums">
+				<span id="date"></span><br>
+				<ol id="memo"></ol> <br>
+				<textarea maxlength="20" rows="1" id="addMemoText" class="tip">在此处输入新的日程</textarea>
+
+			</div>
+
+			<a class="btn btn--diagonal btn--blue" href="#" id="addMemoBtn">增加日程</a>
+			<a class="btn btn--diagonal btn--blue" href="#"  id="updateMemoBtn">修改日程</a>
+			<a class="btn btn--diagonal btn--blue" href="#" id="markMemoBtn" >标记完成</a>
+			<a class="btn btn--diagonal btn--red" href="#" id="deleteMemoBtn" >删除日程</a>
+
+		</div>
+		<div class="Diary">
+			<div id="diaryTitle">日记</div>
+			<br>
+			<article id="diaryText" >今天还没有写日记</article>
+			<br>
+			<span id="sysDiaryMsg"></span>
+		</div>
+		<div class="img">
+			<input type="file" name="img" id="imgBtn" style="display: none" onchange="checkImage()" />
+			<a class="btn btn--diagonal btn--blue" id="imgUploadBtn">上传封面</a>
+
+			<br>
+			<div id="onLoadImage">
+				<img src="" class="cover">
+			</div>
+
+		</div>
+	</div>
+	<div class="edit-dairy-box">
+		<div id="weather">
+			<iframe width="470" scrolling="no" height="18" frameborder="0" allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=1&icon=1&wind=1&num=2&site=12"></iframe>
+		</div>
+		<div class="DiaryEditor">
+			<div style="display: inline-block; vertical-align:top;">
+				<textarea id="mul_input" name="content" style="width:1091px;height:416px;visibility:hidden;display: block;resize: none;"><span style="color: #9B9B9B;">在这里记录今天的心情</span></textarea>
+			</div>
+			<div style="display: inline-block; vertical-align:top;" >
+				<a class="btn btn--diagonal btn--blue" href="#" id="saveDiaryBtn">保存日记</a>
+				<a class="btn btn--diagonal btn--red" href="#" id="deleteDiaryBtn">删除日记</a>
+
+			</div>
+		</div>
+	</div>
+	<footer>
+		作者: Seizedays <br>QQ: 2945734401<br>邮箱:2945734401@qq.com
+	</footer>
+	<input type="hidden" id="selectDay" name="date" value="" />
+	<input type="hidden" id="selectId" name="content" value=""/>
+</body>
+<script type="text/javascript" src="/js/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="/js/kindeditor/lang/zh-CN.js"></script>
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script sec:authorize="isAuthenticated()" src="/js/auth.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/js/ajax.js" ></script>
+<script type="text/javascript" src="/js/calendar.js"></script>
+</html>

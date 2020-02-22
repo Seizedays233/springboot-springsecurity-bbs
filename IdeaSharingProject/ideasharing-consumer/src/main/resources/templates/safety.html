@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>个人中心</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="css/all.min.css" rel="stylesheet" type="text/css">
+
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="css/user.css" rel="stylesheet">
+    <link href="css/safety.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top" >
+<div id="wrapper">
+    <ul th:replace="sidebar::sidebar"></ul>
+    <!-- 主界面 -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- 主要内容 -->
+        <div id="content">
+
+            <!-- 顶部导航栏 -->
+            <nav th:replace="user-nav::nav"></nav>
+
+            <!-- 主界面内容 -->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <!-- 修改密码对话框 -->
+                    <div class="col-xl-8 col-lg-7" style="margin-left: 20%;">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary" style="color: black !important;">密码修改</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body personal">
+
+                                <div class="chart-area">
+
+                                    <form id="pwd-form" action="/updatePwd" method="post">
+
+                                        <div class="info-row">
+                                            <div class="title-col"><span>旧密码: </span></div>
+                                            <div class="cont-col">
+                                                <input type="password" placeholder="修改前的密码" name="oriPwd" class="info oriPwd">
+                                                <span th:text="${pwdTips}" class="tip"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="info-row">
+                                            <div class="title-col"><span>新密码: </span></div>
+                                            <div class="cont-col">
+                                                <input type="password" placeholder="新密码" name="newPwd" id="pwd" class="info newPwd" onblur="pwdCheck()">
+                                                <span id="pwdTip" class="tip" th:text="${newPwdTip}"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="info-row">
+                                            <div class="title-col">
+                                                <span>确认新密码: </span>
+                                            </div>
+                                            <div class="cont-col">
+                                                <input type="password" placeholder="确认新密码" name="confirmPwd" id="confirmPwd" class="info confirmPwd" onblur="pwdConfirmCheck()">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="info-row">
+                                            <div class="title-col"><span>邮箱: </span></div>
+                                            <div class="cont-col">
+                                                <input type="text" th:value="${email}" placeholder="您的邮箱" name="email" class="info email">
+                                            </div>
+                                        </div>
+
+                                        <div class="info-row">
+                                            <div class="title-col"><span>电话号码: </span></div>
+                                            <div class="cont-col">
+                                                <input type="text" th:value="${phone}" placeholder="您的电话号码" name="phone" class="info phone">
+                                                <br><span th:text="${emailTips}" class="tip"></span>
+                                        </div>
+                                        </div>
+                                        <div style="display: inline-block; vertical-align:top; margin-left: 30%;" >
+                                            <a href="#" class="btn btn--diagonal btn--blue" onclick="changePwd()" >确 认</a>
+                                            <a class="btn btn--diagonal btn--red" href="/index">返 回</a>
+                                        </div>
+                                        <input type="hidden" id="hiddenNum" th:value="${updateNum}">
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div><br><br>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white" id="footer">
+            作者: Seizedays <br>QQ: 2945734401<br>邮箱:2945734401@qq.com
+        </footer>
+
+    </div>
+
+</div>
+</body>
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script sec:authorize="isAuthenticated()" src="/js/auth.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+
+<script src="/js/regist.js"></script>
+<script src="/js/safety.js"></script>
+
+</html>

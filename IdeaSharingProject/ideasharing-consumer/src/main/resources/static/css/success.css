@@ -1,0 +1,12 @@
+html{height: 100%;}
+
+body{
+    height: 100%;
+    color: white;
+    background-image:linear-gradient(180deg,#070707 10%,#a8a9ac 100%);
+    background-size:cover
+}
+
+#toLogin{
+    color: aquamarine;
+}

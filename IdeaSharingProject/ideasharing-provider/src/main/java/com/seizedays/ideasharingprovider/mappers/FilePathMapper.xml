@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seizedays.ideasharingprovider.mappers.FilePathMapper">
+
+    <resultMap id="BaseResultMap" type="com.seizedays.beans.FilePath">
+        <id column="fid" jdbcType="BIGINT" property="fid" />
+        <result column="pid" jdbcType="BIGINT" property="pid" />
+        <result column="rid" jdbcType="BIGINT" property="rid" />
+        <result column="filepath" jdbcType="VARCHAR" property="filePath"/>
+        <result column="filename" jdbcType="VARCHAR" property="fileName"/>
+    </resultMap>
+
+    <insert id="addPostFile" parameterType="com.seizedays.beans.FilePath">
+        INSERT INTO filepath(pid, filepath,filename)
+        VALUES (#{pid}, #{filePath}, #{fileName})
+    </insert>
+
+    <delete id="deletePostFile" parameterType="Long">
+        DELETE FROM filepath
+        WHERE pid = #{pid}
+    </delete>
+
+
+    <insert id="addReplyFile" parameterType="com.seizedays.beans.FilePath">
+        INSERT INTO filepath(rid, filepath,filename)
+        VALUES (#{rid}, #{filePath},#{fileName})
+    </insert>
+
+    <delete id="deleteReplyFile" parameterType="Long">
+        DELETE FROM filepath
+        WHERE rid = #{rid}
+    </delete>
+
+
+    <delete id="deleteFileByFid" parameterType="Long">
+        DELETE FROM filepath
+        WHERE fid = #{fid}
+    </delete>
+
+    <!--根据文件名查询文件路径-->
+    <select id="selectFileByNameAndPid" resultType="com.seizedays.beans.FilePath">
+        SELECT fid,f.pid, filepath, filename
+        FROM filepath f LEFT JOIN post p
+        ON f.pid = p.pid
+        WHERE f.pid = #{pid} AND filename = #{fileName}
+    </select>
+
+    <!--根据文件名查询文件路径-->
+    <select id="selectFileByNameAndRid" resultType="com.seizedays.beans.FilePath">
+        SELECT fid,f.pid, filepath, filename
+        FROM filepath f LEFT JOIN reply r
+        ON f.pid = r.pid
+        WHERE f.rid = #{rid} AND filename = #{fileName}
+    </select>
+
+    <select id="selectPostFiles" resultMap="BaseResultMap">
+        SELECT f.fid, f.pid, filepath, filename
+        FROM filepath f LEFT JOIN post p on f.pid = p.pid
+        WHERE f.pid = #{pid}
+    </select>
+
+    <select id="selectReplyFiles" resultMap="BaseResultMap">
+        SELECT f.fid, f.rid, filepath, filename
+        FROM filepath f LEFT JOIN reply r on f.rid = r.rid
+        WHERE f.rid = #{rid}
+    </select>
+
+    <select id="selectFileByFid" resultType="com.seizedays.beans.FilePath">
+        SELECT fid,filepath,filename,pid
+        FROM filepath
+        WHERE fid = #{fid}
+    </select>
+</mapper>

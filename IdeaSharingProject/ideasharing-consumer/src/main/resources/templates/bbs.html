@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8"/>
+    <title>论坛</title>
+
+    <link href="/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/bbs.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+    <nav th:replace="bbs-nav::nav"></nav>
+    <div class="page-top-bottom"></div>
+    <div class="container">
+        <div class="row" th:each="post:${page.modelList}">
+            <div class="col-xs-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading" ><a class="head-text" th:text="${post.ptitle}" th:href="|/post/${post.pid}.content|">帖子标题</a></div>
+                    <div class="panel-body" th:utext="${post.pbody}">
+                        帖子内容<br/>
+                    </div>
+                    <div class="panel-footer" style="height: 40px;">
+                        <div class="col-xs-2">
+                            <span class="text-info" th:text="|发帖用户:${post.ideaUser.nickName}|">发帖用户:xxx</span>
+                        </div>
+                        <div class="col-xs-6">
+                            <span class="text-info"
+                                  th:text="${post.lastReplyTime==null}?|发帖时间:${#dates.format(post.psendTime,'yyyy-MM-dd HH:mm:ss')}|:|最后回复时间:${#dates.format(post.lastReplyTime,'yyyy-MM-dd HH:mm:ss')}|">最后回复时间:2019-2-5-08:00:00</span>
+                        </div>
+                        <div class="col-xs-2">
+<!--                            <span class="badge" th:text="|浏览数:0|">浏览数:0</span>-->
+                            <span class="badge" th:text="|回复数:${post.replyCount}|">回复数:42</span>
+                        </div>
+
+
+                        <div class="col-xs-1" sec:authorize="isAuthenticated()" th:if="${post.ideaUser.username == ideaUserName}">
+                            <input type="hidden" th:value="${post.pid}" class="postId">
+                            <a href="#" class="btn1 btn--red delete-post-btn" >删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <nav>
+                    <ul class="pager">
+                        <li class="previous " th:if="${page.currentPage!=1}"><a th:href="|?page=${page.currentPage-1}|" class="change-page btn--gray"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                        <li class="text-primary" th:text="|当前第${page.currentPage}页，共${page.pageTotal}页|">当前第1页，共4页</li>
+                        <li class="next change-page" th:if="${page.currentPage!=page.pageTotal}"><a th:href="|?page=${page.currentPage+1}|" class="change-page btn--gray">下一页<span aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <footer>
+        作者: Seizedays <br>QQ: 2945734401<br>邮箱:2945734401@qq.com
+    </footer>
+</body>
+<script  src="/js/jquery-3.4.1.min.js"></script>
+<script sec:authorize="isAuthenticated()" src="/js/auth.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/js/bbs.js"></script>
+</html>

@@ -1,0 +1,384 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page-top {
+    color: black;
+    width:100%;
+    height:46px;
+    background:rgb(79, 154, 252);
+    position: fixed;
+    z-index:1;
+}
+.page-top-bottom {
+    height:46px;
+    width:100%;
+    margin-bottom: 20px;
+}
+
+
+#personalUL{
+    color: black;
+    float:right;
+    list-style-type: none;
+    text-align:center;
+}
+
+#personalUL li {
+    color:black;
+    display: inline-block;
+    margin: 8px 30px 0 0;
+    vertical-align: bottom;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
+    color: white;
+    text-decoration: underline;
+}
+
+.title{
+    float: left;
+    width: 8%;
+    color: black !important;
+    text-align: center;
+    font-size: 23px;
+    margin: 10px 0 0 0px;
+}
+
+.search-box{
+    float: left;
+    vertical-align: bottom;
+    margin-left: 20%;
+    margin-top: 8px;
+    width: 50%;
+}
+
+.search-form{
+    width: 100%;
+}
+
+.serarch-opt{
+    float: left;
+    height: 34px;
+}
+
+.search-text{
+    width:73% !important;
+}
+
+.btn-search{
+    height: 100% !important;
+    margin-left: 3px;
+}
+
+.btn-send{
+    margin-left: 3px;
+}
+
+
+.badge-danger{
+    color:#fff;
+    background-color:#e74a3b
+}
+.badge-counter{
+    position:absolute !important;
+    transform:scale(.7) !important;
+    transform-origin:top right !important;
+    right:-.4rem !important;
+    margin-top:-.5rem !important
+}
+
+
+
+.OuterDiv{
+    height: auto;
+    min-height: 500px;
+}
+.LeftColoum{
+    display: inline-block;
+    width: 30%;
+}
+.Calendar {
+    font-family: Verdana;
+    font-size: 15px;
+    background-color: white; /*设置背景色*/
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 400px;
+    height: 350px;
+    padding: 10px;
+    line-height: 1.5em;
+    border-radius: 5%;
+    border: 4px solid rgb(79, 154, 252);
+    color: black;
+    vertical-align:top;
+
+}
+
+
+.Calendar table {
+    width: 100%;
+    border: 1px;
+    border-collapse: collapse; /*相邻的相邻边被合并*/
+}
+.Calendar table thead {
+    font-weight: bold;
+    color: rgb(34, 32, 32);
+}
+.Calendar table tr {
+    height: 45px;
+}
+.Calendar table th {
+    border: 0px ;
+    padding: 1px;
+    font-size: 15px; /*设置表格字体大小*/
+}
+.Calendar table td {
+    border: 0px solid black;
+    padding: 1px;
+    font-size: 20px; /*设置表格字体大小*/
+    text-align: center;
+    border-radius: 50%;
+}
+
+.Calendar table tr.tou {
+    height: 20px;
+    text-align: center;
+}
+
+.Calendar #toyear {
+    font-weight: bold;
+    color: black;
+}
+
+#idCalendarPre {
+    font-weight: bold;
+    cursor: pointer;
+    float: left;
+    padding-right: 5px;
+}
+#toyear {
+    color: black;
+    font-size: 18px;
+    text-align: center;
+    padding-bottom: 15px;
+}
+#idCalendarNext {
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    padding-right: 5px;
+}
+
+#idCalendar td.onToday {
+    /*今天的颜色*/
+    font-weight: bold;
+    color: rgb(114, 184, 241);
+}
+#idCalendar td.onSelect {
+    /*要选择的颜色*/
+    font-weight: bold;
+    color: blue;
+}
+
+.AAA {
+    font-weight: bold;
+    color: white;
+    background: rgb(114, 114, 241);
+}
+
+.Diary{
+    border-radius: 5%;
+    border: 4px solid rgb(79, 154, 252);
+    display: inline-block;
+    height: 530px;
+    height: auto;
+    width: 35%;
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 20px;
+    vertical-align:top;
+}
+
+#diaryTitle{
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#diaryText{
+    word-wrap: normal;
+    overflow: auto;
+    border: 0px;
+    margin: 1px;
+    padding: 5px;
+    height: 400px;
+    width: 95%;
+    outline: none;
+    resize: none;
+}
+
+#saveDiaryBtn{
+    border-radius: 10px;
+    margin-left: 25%;
+    margin-bottom: 10px;
+}
+#deleteDiaryBtn{
+    border-radius: 10px;
+    margin-left: 25%;
+    margin-bottom: 10px;
+}
+
+#memorandums{
+    border-radius: 25px;
+    border: 4px solid rgb(79, 154, 252);
+    padding: 10px;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    height: auto;
+    min-height: 100px;
+    width: 400px;
+
+}
+
+#addMemoText{
+    font-size: small;
+    height: 30px;
+    width: 100%;
+    resize: none;
+    border: 0px;
+}
+
+#addMemoBtn{
+    border-radius: 10px;
+    margin: 5px;
+    margin-left: 45px;
+}
+
+#updateMemoBtn{
+    border-radius: 10px;
+    margin: 5px;
+}
+
+#deleteMemoBtn{
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.finishedMemo{
+    text-decoration: line-through;
+}
+
+.select{
+    color: brown;
+    background-color:papayawhip;
+}
+
+
+#memo{
+    margin: 2px;
+}
+
+
+#date{
+    color: rgb(167, 167, 167);
+}
+
+.tip{
+    color: rgb(167, 167, 167);
+}
+
+
+.img{
+    display: inline-block;
+    height: 50px;
+    width: 33%;
+    margin-left: 10px;
+    margin-top: 20px;
+    vertical-align:top;
+    padding: 0px;
+}
+
+
+.cover{
+    width: auto;
+    width: 100%;
+    max-height: 450px;
+}
+
+
+
+#weatherAPI{
+    margin-top: 5px;
+    margin-left: 25% ;
+}
+
+.DiaryEditor{
+    display: inline-block;
+}
+
+.edit-dairy-box{
+    padding-left: 2%;
+}
+
+/* --------------按钮样式------------ */
+.btn {
+    display: inline-block;
+    border-radius: 3px;
+    margin-top: 5px;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+}
+
+.btn--blue {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    color:black;
+    letter-spacing: 2px;
+    padding: 0.3em 0.5em;
+}
+.btn--blue:hover {
+    color: rgb(79, 154, 252);;
+    box-shadow: 0 27px 55px rgba(0, 0, 0, 0.3), 0 17px 17px rgba(0, 0, 0, 0.15), 0 0 0 1px transparent;
+}
+
+.btn--red {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    color: black;
+    letter-spacing: 2px;
+    padding: 0.3em 0.5em;
+}
+
+.btn--red:hover {
+    color: rgb(238, 38, 38);
+    box-shadow: 0 27px 55px rgba(0, 0, 0, 0.3), 0 17px 17px rgba(0, 0, 0, 0.15), 0 0 0 1px transparent;
+}
+
+footer{
+    width: 100%;
+    background: rgb(202, 199, 199);
+    margin-top: 50px;
+    padding: 20px 20px;
+    font-size: 15px;
+    color: gray;
+    text-align: center;
+}
+

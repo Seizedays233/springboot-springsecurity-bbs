@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>感享-用户注册</title>
+
+  <link href="/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/css/register.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+<div class="container" id="regist-div">
+
+  <div class="card o-hidden border-0 shadow-lg my-5">
+
+    <div class="card-body p-0">
+
+      <div class="row">
+
+        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+
+        <div class="col-lg-7">
+
+          <div class="p-5">
+
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">创建新用户</h1>
+            </div>
+
+            <form class="user" id="registerForm" action="/register.do" method="post" >
+              <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="用户名 (3-15个字符)" onblur="usernameCheck()">
+                <span class="tips" id="nameTip" th:text="${userMsg}"></span>
+              </div>
+
+              <div class="form-group">
+                <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="请输入邮箱" onblur="emailCheck()">
+                <span class="tips" id="emailTip" th:text="${emailMsg}"></span>
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="phone" name="phone" placeholder="请输入电话" onblur="phoneCheck()">
+                <span class="tips" id="phoneTip" th:text="${phoneMsg}"></span>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <input type="password" class="form-control form-control-user pwd" id="pwd" name="password" placeholder="密码(6-16个字符，区分大小写）" onblur="pwdCheck()">
+                </div>
+                <div class="col-sm-6">
+                  <input type="password" class="form-control form-control-user pwd" id="confirmPwd" name="repassword" placeholder="确认密码" onblur="pwdConfirmCheck()">
+                </div><br>
+                <span class="tips" id="pwdTip" th:text="${pwdMsg}"></span>
+              </div>
+
+              <a href="#" onclick="submitCheck()" class="btn btn-primary btn-user btn-block" id="regist-btn">
+                注册
+              </a>
+
+              <hr>
+
+              <a href="#" class="btn btn-phone btn-user btn-block">
+                手机注册</a>
+              <a href="#" class="btn btn-wechat btn-user btn-block">
+                微信/QQ注册 </a>
+
+            </form>
+            <hr>
+
+            <div class="text-center">
+              <a class="small" href="forgot-password.html">忘记密码?</a>
+            </div>
+
+            <div class="text-center">
+              <a class="small" href="login.html">已有账号? 点击这里登录</a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/jquery.easing.min.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+<script src="/js/regist.js"></script>
+</html>

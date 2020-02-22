@@ -1,0 +1,63 @@
+
+html{
+    height: 100%;
+}
+
+body{
+    height: 100% !important;
+}
+
+#sendPostTitle{
+    margin: 4px;
+    width: 70%;
+
+}
+
+#sendPostBody{
+    width:80% ;
+    height: 87% !important;
+}
+
+.controll-btn{
+    margin: 10px;
+}
+
+.btn {
+    display: inline-block;
+    border-radius: 3px;
+    margin-top: 5px;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
+}
+
+.btn--blue {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    color:black;
+    letter-spacing: 2px;
+    padding: 0.3em 0.5em;
+}
+.btn--blue:hover {
+    color: rgb(79, 154, 252);;
+    box-shadow: 0 27px 55px rgba(0, 0, 0, 0.3), 0 17px 17px rgba(0, 0, 0, 0.15), 0 0 0 1px transparent;
+}
+
+
+
+ol{
+    font-size: small;
+}
+
+.download{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+

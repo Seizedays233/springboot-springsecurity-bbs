@@ -1,0 +1,23 @@
+.info-row{
+    margin-left: 25%;
+    font-size: 1rem !important;
+    float: left;
+    height: 3rem;
+    width: 90%;
+}
+
+.cont-col{
+    float: left;
+    width: 40%;
+    position: absolute;
+    left: 40%;
+}
+
+.cont-col input{
+    width: 100%;
+    resize: none;
+}
+
+.warning{
+    color: red;
+}

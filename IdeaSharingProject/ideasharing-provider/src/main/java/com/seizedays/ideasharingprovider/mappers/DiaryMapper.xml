@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seizedays.ideasharingprovider.mappers.DiaryMapper">
+
+    <resultMap id="BaseResultMap" type="com.seizedays.beans.Diary">
+        <id column="did" jdbcType="BIGINT" property="did" />
+        <result column="date" jdbcType="VARCHAR" property="date" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="imageName" jdbcType="VARCHAR" property="imageName" />
+        <result column="uid" jdbcType="BIGINT" property="uid"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        did, date, content, imageName,uid
+    </sql>
+
+    <!--查询-->
+    <select id="selectDiary" resultType="com.seizedays.beans.Diary">
+        SELECT <include refid="Base_Column_List"/>
+        FROM diary
+        WHERE
+        date = #{date,jdbcType=VARCHAR} AND uid = #{uid}
+    </select>
+
+    <!--删除-->
+    <delete id="deleteDiary">
+        DELETE FROM diary
+        WHERE date = #{date} AND uid = #{uid}
+    </delete>
+    
+    <!--新增-->
+    <insert id="addDiary" parameterType="com.seizedays.beans.Diary">
+        INSERT INTO diary(date, content,imageName,uid)
+        VALUES (#{date,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{imageName,jdbcType=VARCHAR}, #{uid,jdbcType=BIGINT})
+    </insert>
+    
+    <!--更新-->
+    <update id="updateDiary" parameterType="com.seizedays.beans.Diary">
+        UPDATE diary
+        SET content = #{content, jdbcType=INTEGER}
+        WHERE date = #{date, jdbcType=VARCHAR} AND uid = #{uid, jdbcType = BIGINT}
+    </update>
+
+    <!--保存图片-->
+    <update id="saveImage" parameterType="com.seizedays.beans.Diary">
+        UPDATE diary
+        SET imageName = #{imageName, jdbcType=VARCHAR}
+        WHERE date=#{date, jdbcType=VARCHAR} AND uid = #{uid, jdbcType = BIGINT}
+    </update>
+
+</mapper>

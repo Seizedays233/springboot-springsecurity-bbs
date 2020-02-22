@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+
+<input type="text" class="form-control" th:value="${tempPost.ptitle}" placeholder="帖子标题" name="ptitle" id="sendPostTitle" maxlength="80"/>
+<span class="tips">还可以输入80个字</span>
+<br>
+<div class="fileContainer">
+    <ol class="fileList"></ol>
+</div><br>
+<input type="hidden" th:value="${tempPost.pbody}" id="hidden-body"/>
+<textarea  class="form-control" placeholder="帖子内容" id="sendPostBody"></textarea>
+<div class="controll-btn">
+    <a class="btn btn--diagonal btn--blue" href="#"  id="sendPostButton">发送</a>
+    <a class="btn btn--diagonal btn--blue" href="#"  id="savePostButton">保存草稿</a>
+    <a class="btn btn--diagonal btn--blue returnButton" href="#" >返回</a>
+    <span style="float: right; margin-right: 20%">用户名：<span sec:authentication="name"></span></span>
+</div>
+
+<input type="hidden" id="pid" th:value="${tempPost.pid}" />
+</body>
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/kindeditor/kindeditor-all.js"></script>
+<script src="/js/bbs.js"></script>
+<script src="/js/editor.js"></script>
+</html>

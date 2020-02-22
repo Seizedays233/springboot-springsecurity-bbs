@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seizedays.ideasharingprovider.mappers.PostMapper">
+
+    <resultMap type="com.seizedays.beans.Post" id="PostAndUser">
+        <id column="pid" jdbcType="BIGINT" property="pid" />
+        <result column="ptitle" jdbcType="VARCHAR" property="ptitle" />
+        <result column="pbody" jdbcType="LONGVARCHAR" property="pbody" />
+        <result column="psendtime" jdbcType="TIMESTAMP" property="psendTime" />
+        <result column="lastreplytime" jdbcType="TIMESTAMP" property="lastReplyTime" />
+        <result column="uid" jdbcType="BIGINT" property="ideaUser.uid" />
+        <result column="username" jdbcType="VARCHAR" property="ideaUser.username" />
+        <result column="nickName" jdbcType="VARCHAR" property="ideaUser.nickName"/>
+        <result column="profilepath" jdbcType="VARCHAR" property="ideaUser.profilePath"/>
+        <result column="tempsave" jdbcType="INTEGER" property="tempSave"/>
+    </resultMap>
+
+    <insert id="addPost" parameterType="com.seizedays.beans.Post">
+        INSERT INTO post(pid,ptitle, pbody, psendtime, lastreplytime, uid,tempsave)
+        VALUES (#{pid},#{ptitle},#{pbody},#{psendTime},#{lastReplyTime},#{ideaUser.uid},#{tempSave})
+    </insert>
+
+
+    <select id="selectAllPost" resultMap="PostAndUser">
+        SELECT p.pid,ptitle,pbody,psendtime,lastreplytime,u.uid,u.username,u.nickname,u.profilepath
+        FROM post p LEFT JOIN ideauser u on p.uid = u.uid
+        ORDER BY lastreplytime DESC
+    </select>
+
+
+    <select id="selectPostById" resultMap="PostAndUser" parameterType="Long">
+        SELECT pid,ptitle,pbody,psendtime,u.uid,u.username,tempsave,u.nickname,u.profilepath
+        FROM post p LEFT JOIN ideauser u on p.uid = u.uid
+        WHERE pid=#{value}
+    </select>
+
+    <select id="selectPostByUid" resultMap="PostAndUser" parameterType="Long">
+        SELECT p.pid,ptitle,psendtime,u.uid,u.username,u.nickname
+        FROM post p LEFT JOIN ideauser u on p.uid = u.uid
+        WHERE P.uid = #{uid}
+        ORDER BY psendtime DESC
+    </select>
+
+    <select id="selectTempSavedPost" resultType="com.seizedays.beans.Post" parameterType="Long">
+        SELECT pid,ptitle,pbody,tempsave
+        FROM  post
+        WHERE tempsave = 1 and uid = #{uid}
+    </select>
+
+    <update id="updatePost" parameterType="com.seizedays.beans.Post">
+        UPDATE  post
+        SET ptitle=#{ptitle}, pbody=#{pbody}, psendtime = #{psendTime} , lastreplytime = #{lastReplyTime},
+            tempsave = #{tempSave}
+        WHERE pid = #{pid}
+    </update>
+
+    <update id="updatePostLastReplyTime" parameterType="com.seizedays.beans.Post">
+        UPDATE post
+        SET lastreplytime =#{lastReplyTime}
+        WHERE pid = #{pid}
+    </update>
+
+    <update id="updatePostState">
+        UPDATE post
+        SET tempsave = #{stateNum}
+        WHERE pid = #{pid}
+    </update>
+
+
+    <delete id="deletePost" parameterType="Long">
+        DELETE FROM post
+        WHERE pid = #{value}
+    </delete>
+
+    <parameterMap id="StartPageAndshowPage" type="Map">
+        <!--当前页面第一条帖子的位置 -->
+        <parameter property="startPostCount" />
+        <!-- 显示条数 -->
+        <parameter property="showPage" />
+        <!--查找关键字-->
+        <parameter property="content" />
+    </parameterMap>
+
+    <select id="selectPostByPage" parameterMap="StartPageAndshowPage" resultMap="PostAndUser">
+        SELECT p.pid,ptitle,pbody,psendtime,lastreplytime,u.uid,u.username,u.nickname
+        FROM post p LEFT JOIN ideauser u on p.uid = u.uid
+        WHERE tempsave = 0
+        ORDER BY lastreplytime DESC
+        LIMIT #{startPostCount},#{showPage}
+    </select>
+
+    <select id="searchPostByTitle" parameterMap="StartPageAndshowPage" resultMap="PostAndUser">
+        SELECT p.pid,p.ptitle,p.pbody,p.psendtime,p.lastreplytime,u.uid,u.username,u.nickname
+        FROM post p LEFT JOIN ideauser u on p.uid = u.uid
+        WHERE p.ptitle like '%' #{content, jdbcType=VARCHAR} '%' AND p.tempsave = 0
+        ORDER BY lastreplytime DESC
+        LIMIT #{startPostCount},#{showPage}
+    </select>
+
+    <select id="searchPostByAuthor" parameterMap="StartPageAndshowPage" resultMap="PostAndUser">
+        SELECT p.pid,p.ptitle,p.pbody,p.psendtime,p.lastreplytime,u.uid,u.username,u.nickname
+        FROM post p LEFT JOIN ideauser u on p.uid = u.uid
+        WHERE u.username like '%' #{content, jdbcType=VARCHAR} '%' AND p.tempsave = 0
+        ORDER BY lastreplytime DESC
+        LIMIT #{startPostCount},#{showPage}
+    </select>
+
+    <select id="getPostCount" resultType="Integer" >
+        SELECT COUNT(1)
+        FROM post
+    </select>
+
+    <select id="findMaxPid" resultType="Long">
+        SELECT MAX(pid)
+        FROM post;
+    </select>
+
+</mapper>

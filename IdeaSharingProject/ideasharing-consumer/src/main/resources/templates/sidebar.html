@@ -1,0 +1,100 @@
+    <!-- 侧边导航栏 -->
+
+    <ul th:fragment="sidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/user">
+            <div class="sidebar-brand-icon ">
+                <img class="img-profile" src="" style="height: 40px; width: 40px; border-radius: 50%;">
+            </div>
+            <div class="sidebar-brand-text mx-3"><span class="nickName">用户名</span></div>
+        </a>
+
+        <!-- 分割线1 -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- 个人信息 -->
+        <li class="nav-item home">
+            <a class="nav-link" href="/index">
+                <i class="fas fa-fw fa-home"></i>
+                <span>返回主页</span></a>
+        </li>
+
+        <!-- 分割线2 -->
+        <hr class="sidebar-divider">
+
+        <!-- 个人信息 -->
+        <li class="nav-item user-data">
+            <a class="nav-link" href="/user">
+                <i class="fas fa-fw fa-address-card"></i>
+                <span>基本信息</span></a>
+        </li>
+
+        <!-- 互动动态 -->
+        <li class="nav-item communication">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                <i class="fas fa-fw fa-user"></i>
+                <span>个人中心</span>
+            </a>
+            <div id="collapseFour" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">主题/回复:</h6>
+                    <a class="collapse-item my-post" href="/commu/myPost">我的主题</a>
+                    <a class="collapse-item my-reply" href="/commu/myReply">我的回复</a>
+                    <h6 class="collapse-header">好友:</h6>
+                    <a class="collapse-item my-follower" href="/commu/follower">关注我的</a>
+                    <a class="collapse-item my-following" href="/commu/following">我关注的</a>
+                </div>
+
+            </div>
+        </li>
+
+        <!-- 收藏夹 -->
+        <li class="nav-item collection">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-star"></i>
+                <span>收藏夹</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">收藏夹:</h6>
+                    <a class="collapse-item" href="/collection/default">默认收藏</a>
+                    <a class="collapse-item" href="/collection/private">私人收藏</a>
+                    <a class="collapse-item" href="/collection/other">其他收藏</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- 分割线 -->
+        <hr class="sidebar-divider">
+
+
+        <div class="sidebar-heading">
+            其他设置
+        </div>
+
+        <li class="nav-item safety">
+            <a class="nav-link" href="/safety">
+                <i class="fas fa-fw fa-user-shield"></i>
+                <span>隐私和安全</span></a>
+        </li>
+
+        <!--仅当权限包含"ADMIN"的登录用户可以显示这部分-->
+        <li class="nav-item authority"  sec:authorize="hasAuthority('ADMIN')" >
+            <a class="nav-link" href="/authority/manage">
+                <i class="fas fa-fw fa-user-lock"></i>
+                <span>权限管理</span>
+            </a>
+        </li>
+
+
+        <!-- 分割线 -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- 侧边栏放大（缩小）按钮 -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>

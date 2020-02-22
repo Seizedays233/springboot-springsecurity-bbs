@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>个人中心</title>
+
+    <link href="css/all.min.css" rel="stylesheet" type="text/css">
+
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="css/user.css" rel="stylesheet">
+</head>
+
+<body id="page-top" >
+<div id="wrapper">
+    <!--侧边导航栏-->
+    <ul th:replace="sidebar::sidebar"></ul>
+
+    <!-- 主界面 -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- 主要内容 -->
+        <div id="content">
+            <!-- 顶部导航栏 -->
+            <nav th:replace="user-nav::nav"></nav>
+
+            <!-- 主界面内容 -->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <!-- 头像对话框 -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4" style="height: 95% !important;">
+                            <!-- Card Header -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary" style="color: black !important;">用户头像</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div style="height: 80%; width: 100%;">
+                                    <div class="photo-div">
+                                        <img class="img-profile" src="images/head.jpg" id="profile-photo" ></br>
+                                    </div>
+                                </div>
+                                <br>
+                                <div>
+                                    <a href="#" class="change-photo">修改头像</a>
+                                    <input type="file" name="image" id="hidden" style="display: none;" value="" onchange="checkImage()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 基本信息框 -->
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary" style="color: black !important;">基本信息</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body personal">
+
+                                <div class="chart-area">
+                                    <div class="info-row">
+                                        <div class="title-col"><span>昵称: </span></div>
+                                        <div class="cont-col"><input type="text" placeholder="您的昵称" class="info" id="nickName" name="nickName" maxlength="16" th:value="${loginUser.nickName}" onblur="nickNameCheck()"><span id="nickNameTip" class="tip"></span></div>
+                                    </div>
+
+                                    <div class="info-row">
+                                        <div class="title-col"><span>用户名: </span></div>
+                                        <div class="cont-col"><span sec:authentication="name">用户名</span></div>
+                                    </div><br><br>
+
+                                    <div class="info-row">
+                                        <div class="title-col"><span>性别: </span></div>
+                                        <div class="cont-col">
+                                            <select class="info " id="sex" name="sex" >
+                                                <option th:selected="${loginUser.sex==null}" value="2">--请选择--</option>
+                                                <option th:selected="${loginUser.sex==true}" value="1">男</option>
+                                                <option th:selected="${loginUser.sex==false}" value="0">女</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="info-row">
+                                        <div class="title-col"><span>邮箱: </span></div>
+                                        <div class="cont-col"><input type="text" placeholder="您的邮箱" class="info" id="email" name="email" th:value="${loginUser.email}"><span id="emailTip" class="tip" onblur="emailCheck()"></span></div>
+                                    </div>
+
+                                    <div class="info-row">
+                                        <div class="title-col"><span>电话号码: </span></div>
+                                        <div class="cont-col"><input type="text" placeholder="您的电话号码" class="info" id="phone" name="phone" th:value="${loginUser.phone}" onblur="phoneCheck()">
+                                            <span id="phoneTip" class="tip"></span></div>
+                                    </div>
+
+                                    <div class="info-row">
+                                        <div class="title-col"><span>个性签名: </span></div>
+                                        <div class="cont-col" style="width: 80%;">
+                                            <textarea rows="3" cols="70" placeholder="让大家更好的认识你！" maxlength="200" th:value="${loginUser.signature}" class="info" name="signature"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div style="display: inline-block; vertical-align:top; margin-left: 40%;" >
+                <a class="btn btn--diagonal btn--blue" onclick="saveUserData()" >保 存</a>
+                <a class="btn btn--diagonal btn--red" href="/index">返 回</a>
+            </div>
+
+        </div><br><br>
+
+        <footer class="sticky-footer bg-white" id="footer">
+            作者: Seizedays <br>电话: 2945734401<br>邮箱:2945734401@qq.com
+        </footer>
+
+    </div>
+
+</div>
+</body>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script sec:authorize="isAuthenticated()" src="/js/auth.js"></script>
+<script src="js/bootstrap.bundle.js"></script>
+<script src="js/sb-admin-2.min.js"></script>
+<script src="js/regist.js"></script>
+<script src="js/user.js"></script>
+
+
+</html>

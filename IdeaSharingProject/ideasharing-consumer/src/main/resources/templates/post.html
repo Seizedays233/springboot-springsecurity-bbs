@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="${post.ptitle}">帖子标题</title>
+    <link href="/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/post.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <!--保存当前帖子的pid-->
+    <input type="hidden" th:value="${post.pid}" id="postId">
+
+    <!--定位回复位置用-->
+    <input type="hidden" th:value="${rid}" id="ridPosition">
+
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow page-top">
+        <a href="/bbs" style="float: left;margin-top: 20px; margin-left: 5px;">返回</a>
+        <div class="title">
+            <a  th:text="${post.ptitle}">帖子标题 </a>
+        </div>
+        <ul id="personalUL">
+            <!-- 如果未登录 显示登录和注册  -->
+            <div sec:authorize="!isAuthenticated()">
+                <li><a th:href="@{/login}">登录</a></li>
+                <li><a th:href="@{/register}">注册</a></li>
+            </div>
+        </ul>
+
+        <!--如果已登录 显示用户名和注销-->
+        <ul sec:authorize="isAuthenticated()" class="navbar-nav ml-auto" >
+
+            <li class="nav-item dropdown no-arrow d-sm-none">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- 信息下拉菜单 -->
+                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+
+            <!-- 备忘录 -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <!-- 备忘数量 -->
+                    <span class="badge badge-danger badge-counter">3+</span>
+                </a>
+                <!-- 备忘下拉菜单 -->
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                    <h6 class="dropdown-header">
+                        备忘录
+                    </h6>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="mr-3">
+                            <div class="icon-circle bg-primary">
+                                <i class="fas fa-file-alt text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="small text-gray-500">日期</div>
+                            <span class="font-weight-bold">备忘内容1</span>
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="mr-3">
+                            <div class="icon-circle bg-success">
+                                <i class="fas fa-donate text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="small text-gray-500">日期</div>
+                            备忘内容2
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="mr-3">
+                            <div class="icon-circle bg-warning">
+                                <i class="fas fa-exclamation-triangle text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="small text-gray-500">日期</div>
+                            备忘内容3
+                        </div>
+                    </a>
+                    <a class="dropdown-item text-center small text-gray-500" href="#">显示所有备忘</a>
+                </div>
+            </li>
+
+            <!-- 信息 -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <!-- 信息数量 -->
+                    <span class="badge badge-danger badge-counter">7</span>
+                </a>
+                <!-- 信息下拉菜单 -->
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                    <h6 class="dropdown-header">
+                        信息中心
+                    </h6>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="dropdown-list-image mr-3">
+<!--                            <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">-->
+                            <div class="status-indicator bg-success"></div>
+                        </div>
+                        <div class="font-weight-bold">
+                            <div class="text-truncate">信息内容1</div>
+                            <div class="small text-gray-500">用户 · 时间</div>
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="dropdown-list-image mr-3">
+<!--                            <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">-->
+                            <div class="status-indicator"></div>
+                        </div>
+                        <div>
+                            <div class="text-truncate">信息内容2</div>
+                            <div class="small text-gray-500">用户 · 时间</div>
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="dropdown-list-image mr-3">
+<!--                            <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">-->
+                            <div class="status-indicator bg-warning"></div>
+                        </div>
+                        <div>
+                            <div class="text-truncate">信息内容3</div>
+                            <div class="small text-gray-500">用户 · 时间</div>
+                        </div>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="dropdown-list-image mr-3">
+<!--                            <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">-->
+                            <div class="status-indicator bg-success"></div>
+                        </div>
+                        <div>
+                            <div class="text-truncate">信息内容4</div>
+                            <div class="small text-gray-500">用户 · 时间</div>
+                        </div>
+                    </a>
+                    <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- 用户信息 -->
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small nickName">用户名</span>
+                    <img class="img-profile rounded-circle" src=""  style="width: 30px; height: 30px; border-radius: 50%;">
+                </a>
+                <!-- 用户信息下拉菜单 -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="/user">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        个人中心
+                    </a>
+                    <a class="dropdown-item" href="/safety">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                        设置
+                    </a>
+                    <a class="dropdown-item" href="/editor">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                        发帖
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        注销
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+
+    </nav>
+    <div class="page-top-bottom"></div>
+
+    <img th:src="@{{profile}(profile=${post.ideaUser.profilePath})}"  class="title-profile" >
+
+    <div class="container main-cont" >
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-info">
+                    <div class="panel-body" th:utext="${post.pbody}">
+                        帖子内容<br/>
+                    </div>
+                    <div class="fileContainer">
+                        <ol class="fileList"></ol>
+                    </div>
+                    <div class="panel-footer" style="height: 40px;">
+                        <div class="col-xs-2 post-user">
+                            <span class="text-info" th:text="|发帖用户:${post.ideaUser.nickName}|">发帖用户:xxx</span>
+                        </div>
+                        <div class="col-xs-6">
+                                <span class="text-info"
+                                      th:text="|发帖时间:${#dates.format(post.psendTime,'yyyy-MM-dd HH:mm:ss')}|">发帖时间:2019-2-5-08:00:00</span>
+                        </div>
+                        <div class="col-xs-2">
+                            <span class="badge" th:text="|回复数:${post.replyCount}|">回复数:111</span>
+                        </div>
+                        <div class="col-xs-1" th:if="${post.ideaUser.username == actUsername}">
+                            <a href="#" class="btn1 btn--red" id="delete-post-btn" >删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <div class="row" th:each="r,status:${page.modelList}" th:id="${r.rid}" >
+        <div th:if="${post.ideaUser.username == r.ideaUser.username}" class="col-xs-12 reply-div-moderator">
+            <div class="panel panel-info reply moderator-reply">
+                <div class="panel-body reply-body" th:utext="${r.replyMessage}">
+                    回复
+                </div>
+                <div class="fileContainer"></div>
+                <div class="panel-footer reply-footer" style="height: 40px;">
+                    <div class="col-xs-2">
+                        <span class="text-info" th:text="|楼主:${r.ideaUser.nickName}|">用户:xxx</span>
+                    </div>
+                    <div class="col-xs-6">
+                        <span class="text-info" th:text="|回复时间:${#dates.format(r.replyTime,'yyyy-MM-dd HH:mm:ss')}|">回复时间:2019-2-5-08:00:00</span>
+                    </div>
+                    <div class="col-xs-3">
+                                <span class="text-info"
+                                      th:text="|${status.count+(page.showCount*((page.currentPage)-1))}楼|">1楼</span>
+                    </div>
+                    <div class="col-xs-1" th:if="${r.ideaUser.username == actUsername}">
+                        <input type="hidden" th:value="${r.rid}" class="repId">
+                        <a href="#" class="btn1 btn--red delete-rep-btn">删除</a>
+                        <input type="hidden" th:value="${r.ideaUser.username}" class="repuserName">
+                    </div>
+                </div>
+            </div>
+            <img th:src="@{{profilePath}(profilePath=${r.ideaUser.profilePath})}" class="moderator-profile" >
+        </div>
+
+        <div th:if="${post.ideaUser.username != r.ideaUser.username}" class="col-xs-12 reply-div-viewer">
+            <img th:src="@{{profilePath}(profilePath=${r.ideaUser.profilePath})}" class="viewer-profile">
+            <div class="panel panel-info reply viewer-reply">
+                <div class="panel-body reply-body" th:id="${r.rid}" th:utext="${r.replyMessage}">
+                    回复
+                </div>
+                <div class="fileContainer"></div>
+                <div class="panel-footer reply-footer" style="height: 40px;">
+                    <div class="col-xs-2">
+                        <span class="text-info" th:text="|回复用户:${r.ideaUser.nickName}|">用户:xxx</span>
+                    </div>
+                    <div class="col-xs-6">
+                        <span class="text-info" th:text="|回复时间:${#dates.format(r.replyTime,'yyyy-MM-dd HH:mm:ss')}|">回复时间:2019-2-5-08:00:00</span>
+                    </div>
+                    <div class="col-xs-3">
+                            <span class="text-info"
+                                  th:text="|${status.count+(page.showCount*((page.currentPage)-1))}楼|">1楼</span>
+                    </div>
+                    <div class="col-xs-1" th:if="${r.ideaUser.username == actUsername}">
+                        <input type="hidden" th:value="${r.rid}" class="repId">
+                        <a href="#" class="btn1 btn--red delete-rep-btn">删除</a>
+                        <input type="hidden" th:value="${r.ideaUser.username}" class="repuserName">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-xs-12">
+                <nav>
+                    <ul class="pager">
+                        <li class="previous" th:if="${page.currentPage!=1}"><a th:href="|?page=${page.currentPage-1}|" class="change-page btn--gray"><span
+                                aria-hidden="true">&larr;</span> 上一页</a></li>
+                        <li class="text-primary" th:text="|当前第${page.currentPage}页，共${page.pageTotal}页|">当前第1页，共4页</li>
+                        <li class="next" th:if="${(page.currentPage!=page.pageTotal)and(page.pageTotal!=0)}"><a th:href="|?page=${page.currentPage+1}|" class="change-page btn--gray">下一页<span aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="reply-div" sec:authorize="isAuthenticated()">
+        <textarea id="reply-body"></textarea><br>
+        <div style="display: inline-block; vertical-align:top;" id="btn-div">
+            <a class="ctlbtn btn--diagonal btn--gray reply-btn" href="#">回帖</a>
+            <a class="ctlbtn btn--diagonal btn--gray return-btn"  href="/bbs">返回</a>
+        </div>
+    </div>
+    <div class="reply-div" sec:authorize="!isAuthenticated()">
+        <span>需登录后才能回复</span>
+    </div>
+    <footer>
+        作者: Seizedays <br>QQ: 2945734401<br>邮箱:2945734401@qq.com
+    </footer>
+</body>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+<script src="/js/kindeditor/kindeditor-all-min.js"></script>
+<script src="/js/bbs.js"></script>
+<script src="/js/post.js" type="text/javascript"></script>
+
+</html>

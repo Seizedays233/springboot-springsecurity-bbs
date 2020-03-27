@@ -10,8 +10,6 @@
 *  用户权限管理
 *  私人日记 日程备忘录
 
-# 项目视频演示
-  视频地址：https://www.bilibili.com/video/av90445405#reply2410652124
   
 # 项目使用技术/框架
 * SpringBoot

@@ -29,8 +29,6 @@
  4. 启动Zookeeper
  5. 分别启动Provider和Consumer 即可正常运行
  
- # 联系方式
- * qq: 2945734401
- * email: 2945734401@qq.com
+
 
 
